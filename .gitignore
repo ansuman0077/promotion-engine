@@ -5,12 +5,15 @@
 *.iws
 out/
 
-# Gradle
-.gradle/
-build/
+# Maven
+log/
+target/
 
 # Spring Boot
 target/
+.classpath
+.project
+.settings/
 
 # Logs
 logs/
