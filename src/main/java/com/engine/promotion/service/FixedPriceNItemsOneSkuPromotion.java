@@ -21,13 +21,18 @@ public class FixedPriceNItemsOneSkuPromotion implements Promotion {
 
         // calculate the discount amount based on promotion
         double discount = 0;
+        int numberOfDiscounts = 0;
         if (count >= quantity) {
-            double totalPrice = quantity * skus.stream()
-                    .filter(sku -> sku.getSkuId().equals(skuId))
-                    .findFirst()
-                    .orElseThrow(IllegalArgumentException::new)
-                    .getUnitPrice();
-            discount = totalPrice - fixedPrice;
+            numberOfDiscounts = (int) (count / quantity);
+            while(numberOfDiscounts > 0) {
+                double totalPrice = quantity * skus.stream()
+                        .filter(sku -> sku.getSkuId().equals(skuId))
+                        .findFirst()
+                        .orElseThrow(IllegalArgumentException::new)
+                        .getUnitPrice();
+                discount += totalPrice - fixedPrice;
+                numberOfDiscounts--;
+            }
         }
         return discount;
     }

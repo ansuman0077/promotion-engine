@@ -49,7 +49,6 @@ public class PromotionServiceImpl implements PromotionService {
                 //Here we check if the SKU is applicable for promotion and if yes -then apply the promotion and calculate the total price
                 if (promotion.isApplicable(skus)) {
                     totalPrice -= promotion.applyPromotion(skus);
-                    break;
                 }
             }
             return totalPrice;
