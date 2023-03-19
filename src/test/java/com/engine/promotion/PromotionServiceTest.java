@@ -42,7 +42,7 @@ public class PromotionServiceTest {
         skuIds.add("B");
         skuIds.add("C");
         skuIds.add("D");
-        assertEquals(115.0, promotionService.calculateTotalPrice(skuIds));
+        assertEquals(110.0, promotionService.calculateTotalPrice(skuIds));
     }
     @Test
     public void calculateTotalPriceWithMultipleSkuItems() {
@@ -95,5 +95,30 @@ public class PromotionServiceTest {
         skuIds.add("C");
         skuIds.add("D");
         assertEquals(280.0, promotionService.calculateTotalPrice(skuIds));
+    }
+
+    @Test
+    public void calculateTotalPriceWithFixedNSkuItemsOfOneSkuType() {
+        List<String> skuIds = new ArrayList<>();
+        skuIds.add("A");
+        skuIds.add("A");
+        skuIds.add("A");
+        assertEquals(130.0, promotionService.calculateTotalPrice(skuIds));
+    }
+
+    @Test
+    public void calculateTotalPriceWithFixedNSkuItemsOfSecondSkuType() {
+        List<String> skuIds = new ArrayList<>();
+        skuIds.add("B");
+        skuIds.add("B");
+        assertEquals(45.0, promotionService.calculateTotalPrice(skuIds));
+    }
+
+    @Test
+    public void calculateTotalPriceWithCombinedSkuType() {
+        List<String> skuIds = new ArrayList<>();
+        skuIds.add("C");
+        skuIds.add("D");
+        assertEquals(30.0, promotionService.calculateTotalPrice(skuIds));
     }
 }
