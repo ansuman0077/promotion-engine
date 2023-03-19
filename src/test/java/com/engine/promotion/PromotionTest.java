@@ -75,4 +75,12 @@ public class PromotionTest {
         skus.add(new Sku("D", 15));
         assertTrue(promotion.isApplicable(skus));
     }
+    @Test
+    public void promotionIsNotApplicableForCombinedSkuItems() {
+        Promotion promotion = new SkuCombinedFixedPricePromotion("C", "D", 30.0);
+        List<Sku> skus = new ArrayList<>();
+        skus.add(new Sku("B", 30));
+        skus.add(new Sku("C", 20));
+        assertFalse(promotion.isApplicable(skus));
+    }
 }
