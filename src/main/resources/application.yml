@@ -1,0 +1,7 @@
+server:
+  port : 8080
+
+skuIdAUnitPrice : 50
+skuIdBUnitPrice : 30
+skuIdCUnitPrice : 20
+skuIdDUnitPrice : 15
