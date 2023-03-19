@@ -2,7 +2,7 @@ package com.engine.promotion.service;
 
 import com.engine.promotion.model.Sku;
 import jakarta.annotation.PostConstruct;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,10 +10,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
 public class PromotionServiceImpl implements PromotionService {
 
     private List<Promotion> promotions;
+
+    @Value("${skuIdAUnitPrice}")
+    private Double skuIdAUnitPrice;
+    @Value("${skuIdBUnitPrice}")
+    private Double skuIdBUnitPrice;
+    @Value("${skuIdCUnitPrice}")
+    private Double skuIdCUnitPrice;
+    @Value("${skuIdDUnitPrice}")
+    private Double skuIdDUnitPrice;
+
     @PostConstruct
     public void initializeActivePromotions() {
         promotions =  new ArrayList<>();
@@ -28,13 +37,13 @@ public class PromotionServiceImpl implements PromotionService {
                     .map(skuId -> {
                         switch (skuId) {
                             case "A":
-                                return new Sku("A", 50);
+                                return new Sku("A", skuIdAUnitPrice);
                             case "B":
-                                return new Sku("B", 30);
+                                return new Sku("B", skuIdBUnitPrice);
                             case "C":
-                                return new Sku("C", 20);
+                                return new Sku("C", skuIdCUnitPrice);
                             case "D":
-                                return new Sku("D", 15);
+                                return new Sku("D", skuIdDUnitPrice);
                             default:
                                 throw new IllegalArgumentException("Invalid SKU ID: " + skuId);
                         }
