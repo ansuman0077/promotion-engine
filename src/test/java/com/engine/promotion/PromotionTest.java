@@ -3,6 +3,7 @@ package com.engine.promotion;
 import com.engine.promotion.model.Sku;
 import com.engine.promotion.service.FixedPriceNItemsOneSkuPromotion;
 import com.engine.promotion.service.Promotion;
+import com.engine.promotion.service.SkuCombinedFixedPricePromotion;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -64,5 +65,14 @@ public class PromotionTest {
         double discount = promotion.applyPromotion(skus);
         assertNotNull(discount);
         assertEquals(15.0,discount);
+    }
+
+    @Test
+    public void promotionIsApplicableForCombinedSkuItems() {
+        Promotion promotion = new SkuCombinedFixedPricePromotion("C", "D", 30.0);
+        List<Sku> skus = new ArrayList<>();
+        skus.add(new Sku("C", 20));
+        skus.add(new Sku("D", 15));
+        assertTrue(promotion.isApplicable(skus));
     }
 }
