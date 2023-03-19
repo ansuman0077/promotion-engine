@@ -35,4 +35,65 @@ public class PromotionServiceTest {
         skuIds.add("C");
         assertEquals(120.0, promotionService.calculateTotalPrice(skuIds));
     }
+    @Test
+    public void calculateTotalPriceWithAllSku() {
+        List<String> skuIds = new ArrayList<>();
+        skuIds.add("A");
+        skuIds.add("B");
+        skuIds.add("C");
+        skuIds.add("D");
+        assertEquals(115.0, promotionService.calculateTotalPrice(skuIds));
+    }
+    @Test
+    public void calculateTotalPriceWithMultipleSkuItems() {
+        List<String> skuIds = new ArrayList<>();
+        skuIds.add("A");
+        skuIds.add("A");
+        skuIds.add("A");
+        skuIds.add("B");
+        skuIds.add("C");
+        skuIds.add("D");
+        assertEquals(190.0, promotionService.calculateTotalPrice(skuIds));
+    }
+
+    @Test
+    public void calculateTotalPriceWithNoPromotionsScenarioOne() {
+        List<String> skuIds = new ArrayList<>();
+        skuIds.add("A");
+        skuIds.add("B");
+        skuIds.add("C");
+        assertEquals(100.0, promotionService.calculateTotalPrice(skuIds));
+    }
+    @Test
+    public void calculateTotalPriceWithMultipleSkuItemsScenarioTwo() {
+        List<String> skuIds = new ArrayList<>();
+        skuIds.add("A");
+        skuIds.add("A");
+        skuIds.add("A");
+        skuIds.add("A");
+        skuIds.add("A");
+        skuIds.add("B");
+        skuIds.add("B");
+        skuIds.add("B");
+        skuIds.add("B");
+        skuIds.add("B");
+        skuIds.add("C");
+        assertEquals(370.0, promotionService.calculateTotalPrice(skuIds));
+    }
+
+    @Test
+    public void calculateTotalPriceWithMultipleSkuItemsScenarioThree() {
+        List<String> skuIds = new ArrayList<>();
+        skuIds.add("A");
+        skuIds.add("A");
+        skuIds.add("A");
+        skuIds.add("B");
+        skuIds.add("B");
+        skuIds.add("B");
+        skuIds.add("B");
+        skuIds.add("B");
+        skuIds.add("C");
+        skuIds.add("D");
+        assertEquals(280.0, promotionService.calculateTotalPrice(skuIds));
+    }
 }
