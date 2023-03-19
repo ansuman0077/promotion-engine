@@ -15,7 +15,7 @@ public class PromotionServiceImpl implements PromotionService {
 
     private List<Promotion> promotions;
     @PostConstruct
-    public void init() {
+    public void initializeActivePromotions() {
         promotions =  new ArrayList<>();
         promotions.add(new FixedPriceNItemsOneSkuPromotion("A", 3, 130));
         promotions.add(new FixedPriceNItemsOneSkuPromotion("B", 2, 45));
